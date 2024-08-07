@@ -83,7 +83,7 @@ class _OtpState extends State<Otp> {
                 shape: PinCodeFieldShape.box,
                 borderRadius: BorderRadius.circular(15),
                 fieldHeight: 70,
-                fieldWidth: 60,
+                fieldWidth: 55,
                 activeFillColor: Color(0xFFE94057),
                 inactiveFillColor: Colors.transparent,
                 selectedFillColor: Colors.transparent,

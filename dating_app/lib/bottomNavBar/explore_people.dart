@@ -192,38 +192,45 @@ class _ExplorePeopleState extends State<ExplorePeople> {
             ),
           ),
           Container(
+            padding: const EdgeInsets.symmetric(vertical: 20.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                IconButton(
-                  icon: Image.asset(
-                    "assets/images/dislike.png",
-                    width: 110,
-                    height: 110,
+                Expanded(
+                  child: IconButton(
+                    icon: Image.asset(
+                      "assets/images/dislike.png",
+                      width: 70,
+                      height: 70,
+                    ),
+                    onPressed: () {
+                      _showIcon('dislike');
+                    },
                   ),
-                  onPressed: () {
-                    _showIcon('dislike');
-                  },
                 ),
-                IconButton(
-                  icon: Image.asset(
-                    "assets/images/like.png",
-                    width: 140,
-                    height: 140,
+                Expanded(
+                  child: IconButton(
+                    icon: Image.asset(
+                      "assets/images/like.png",
+                      width: 70,
+                      height: 70,
+                    ),
+                    onPressed: () {
+                      _showIcon('like');
+                    },
                   ),
-                  onPressed: () {
-                    _showIcon('like');
-                  },
                 ),
-                IconButton(
-                  icon: Image.asset(
-                    "assets/images/star.png",
-                    width: 110,
-                    height: 110,
+                Expanded(
+                  child: IconButton(
+                    icon: Image.asset(
+                      "assets/images/star.png",
+                      width: 70,
+                      height: 70,
+                    ),
+                    onPressed: () {
+                      _showIcon('star');
+                    },
                   ),
-                  onPressed: () {
-                    _showIcon('star');
-                  },
                 ),
               ],
             ),

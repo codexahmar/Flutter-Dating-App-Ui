@@ -109,63 +109,65 @@ class _GenderScreenState extends State<GenderScreen> {
         backgroundColor: Colors.white,
         elevation: 0,
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 30),
-            const Text(
-              "I am a",
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700),
-            ),
-            const SizedBox(height: 130),
-            Column(
-              children: [
-                _buildGenderOption("Man"),
-                _buildGenderOption("Woman"),
-                _buildGenderOption("Choose Another"),
-                if (_showDropdown)
-                  Column(
-                    children: _otherGenders.map((gender) {
-                      return GestureDetector(
-                        onTap: () => _selectCustomGender(gender),
-                        child: Container(
-                          margin: const EdgeInsets.only(bottom: 20),
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 15, horizontal: 15),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(20),
-                            border: Border.all(color: Colors.grey, width: 1),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                gender,
-                                style: const TextStyle(
-                                    fontSize: 16, color: Colors.black),
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
-                    }).toList(),
-                  ),
-              ],
-            ),
-            const Spacer(),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 50),
-              child: Buttons(
-                text: "Continue",
-                color: Color(0xFFE94057),
-                destination: PassionsScreen(),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 30),
+              const Text(
+                "I am a",
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700),
               ),
-            ),
-            const SizedBox(height: 20),
-          ],
+              const SizedBox(height: 130),
+              Column(
+                children: [
+                  _buildGenderOption("Man"),
+                  _buildGenderOption("Woman"),
+                  _buildGenderOption("Choose Another"),
+                  if (_showDropdown)
+                    Column(
+                      children: _otherGenders.map((gender) {
+                        return GestureDetector(
+                          onTap: () => _selectCustomGender(gender),
+                          child: Container(
+                            margin: const EdgeInsets.only(bottom: 20),
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 15, horizontal: 15),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all(color: Colors.grey, width: 1),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  gender,
+                                  style: const TextStyle(
+                                      fontSize: 16, color: Colors.black),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                ],
+              ),
+              const SizedBox(height: 90),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 50),
+                child: Buttons(
+                  text: "Continue",
+                  color: const Color(0xFFE94057),
+                  destination: const PassionsScreen(),
+                ),
+              ),
+              const SizedBox(height: 20),
+            ],
+          ),
         ),
       ),
     );
