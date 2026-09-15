@@ -40,93 +40,102 @@ class _EmailAuthScreenState extends State<EmailAuthScreen> {
           Navigator.pushNamed(context, AppRoutes.profileDetails);
         },
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 40),
-            Text(
-              "My Email",
-              style: GoogleFonts.plusJakartaSans(
-                fontSize: 32,
-                fontWeight: FontWeight.w700,
-                color: AppColors.textPrimary,
-              ),
-            ),
-            const SizedBox(height: 12),
-            Text(
-              "Please enter your email and password to continue. We will secure your account.",
-              style: GoogleFonts.plusJakartaSans(
-                fontSize: 15,
-                color: AppColors.textSecondary,
-                height: 1.4,
-              ),
-            ),
-            const SizedBox(height: 40),
-            AppTextField(
-              controller: _emailController,
-              labelText: "Email address",
-              hintText: "name@example.com",
-              keyboardType: TextInputType.emailAddress,
-              prefixIcon: const Icon(
-                Icons.email_outlined,
-                color: AppColors.primary,
-                size: 22,
-              ),
-            ),
-            const SizedBox(height: 16),
-            AppTextField(
-              controller: _passwordController,
-              labelText: "Password",
-              hintText: "Enter your password",
-              obscureText: !_isPasswordVisible,
-              prefixIcon: const Icon(
-                Icons.lock_outline_rounded,
-                color: AppColors.primary,
-                size: 22,
-              ),
-              suffixIcon: IconButton(
-                icon: Icon(
-                  _isPasswordVisible
-                      ? Icons.visibility_outlined
-                      : Icons.visibility_off_outlined,
-                  color: AppColors.textMuted,
-                  size: 20,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 32),
+              Text(
+                "My Email",
+                style: GoogleFonts.plusJakartaSans(
+                  fontSize: 30,
+                  fontWeight: FontWeight.w800,
+                  color: AppColors.textPrimary,
+                  letterSpacing: -0.7,
                 ),
-                onPressed: () {
-                  setState(() {
-                    _isPasswordVisible = !_isPasswordVisible;
-                  });
-                },
               ),
-            ),
-            const SizedBox(height: 12),
-            Align(
-              alignment: Alignment.centerRight,
-              child: TextButton(
-                onPressed: () {},
-                style: TextButton.styleFrom(
-                  padding: EdgeInsets.zero,
-                  minimumSize: const Size(0, 0),
-                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              const SizedBox(height: 12),
+              Text(
+                "Please enter your email and password to continue. We will secure your account.",
+                style: GoogleFonts.plusJakartaSans(
+                  fontSize: 14.5,
+                  color: AppColors.textSecondary,
+                  height: 1.5,
                 ),
-                child: Text(
-                  "Forgot password?",
-                  style: GoogleFonts.plusJakartaSans(
-                    color: AppColors.primary,
-                    fontSize: 13,
-                    fontWeight: FontWeight.w600,
+              ),
+              const SizedBox(height: 40),
+              AppTextField(
+                controller: _emailController,
+                labelText: "Email address",
+                hintText: "name@example.com",
+                keyboardType: TextInputType.emailAddress,
+                prefixIcon: const Icon(
+                  Icons.email_outlined,
+                  color: AppColors.primary,
+                  size: 22,
+                ),
+              ),
+              const SizedBox(height: 16),
+              AppTextField(
+                controller: _passwordController,
+                labelText: "Password",
+                hintText: "Enter your password",
+                obscureText: !_isPasswordVisible,
+                prefixIcon: const Icon(
+                  Icons.lock_outline_rounded,
+                  color: AppColors.primary,
+                  size: 22,
+                ),
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    _isPasswordVisible
+                        ? Icons.visibility_outlined
+                        : Icons.visibility_off_outlined,
+                    color: AppColors.textMuted,
+                    size: 20,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _isPasswordVisible = !_isPasswordVisible;
+                    });
+                  },
+                ),
+              ),
+              const SizedBox(height: 12),
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  onPressed: () {},
+                  style: TextButton.styleFrom(
+                    padding: EdgeInsets.zero,
+                    minimumSize: const Size(0, 0),
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  ),
+                  child: Text(
+                    "Forgot password?",
+                    style: GoogleFonts.plusJakartaSans(
+                      color: AppColors.primary,
+                      fontSize: 13.5,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
               ),
-            ),
-            const SizedBox(height: 40),
-            AppButton(
-              text: "Continue",
-              onPressed: _onContinue,
-            ),
-          ],
+              const SizedBox(height: 44),
+              AppButton(
+                text: "Continue",
+                elevation: 3,
+                suffixIcon: const Icon(
+                  Icons.arrow_forward_rounded,
+                  color: Colors.white,
+                  size: 20,
+                ),
+                onPressed: _onContinue,
+              ),
+            ],
+          ),
         ),
       ),
     );
