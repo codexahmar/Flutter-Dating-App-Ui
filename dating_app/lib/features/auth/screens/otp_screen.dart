@@ -5,6 +5,7 @@ import 'package:dating_app/core/widgets/app_button.dart';
 import 'package:dating_app/core/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class OtpScreen extends StatefulWidget {
@@ -73,16 +74,17 @@ class _OtpScreenState extends State<OtpScreen> {
               _start > 0
                   ? "00:${_start < 10 ? '0$_start' : _start}"
                   : "00:00",
-              style: const TextStyle(
+              style: GoogleFonts.plusJakartaSans(
                 fontSize: 36,
-                fontWeight: FontWeight.w700,
+                fontWeight: FontWeight.w800,
                 color: AppColors.textPrimary,
+                letterSpacing: -0.5,
               ),
             ),
             const SizedBox(height: 16),
-            const Text(
+            Text(
               "Type the verification code\nwe've sent you.",
-              style: TextStyle(
+              style: GoogleFonts.plusJakartaSans(
                 fontSize: 16,
                 color: AppColors.textSecondary,
                 height: 1.4,
@@ -111,7 +113,7 @@ class _OtpScreenState extends State<OtpScreen> {
               animationDuration: const Duration(milliseconds: 200),
               backgroundColor: Colors.transparent,
               enableActiveFill: true,
-              textStyle: const TextStyle(
+              textStyle: GoogleFonts.plusJakartaSans(
                 color: AppColors.textPrimary,
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -140,7 +142,7 @@ class _OtpScreenState extends State<OtpScreen> {
               onPressed: _start == 0 ? _resendOtp : null,
               child: Text(
                 "Send again",
-                style: TextStyle(
+                style: GoogleFonts.plusJakartaSans(
                   color: _start == 0 ? AppColors.primary : AppColors.textMuted,
                   fontSize: 16,
                   fontWeight: FontWeight.w600,

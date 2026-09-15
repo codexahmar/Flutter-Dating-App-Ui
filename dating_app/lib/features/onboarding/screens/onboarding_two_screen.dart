@@ -9,8 +9,10 @@ class OnboardingTwoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const OnboardingContentWidget(
       imagePath: AppAssets.girl2,
-      title: "Matches",
-      description: "We match you with people that have a\nlarge array of similar interests.",
+      tag: "Meaningful Matches",
+      tagIcon: Icons.favorite_rounded,
+      title: "Match On What Matters",
+      description: "Connect with people who share your passions, lifestyle, and values for deeper, lasting bonds.",
     );
   }
 }

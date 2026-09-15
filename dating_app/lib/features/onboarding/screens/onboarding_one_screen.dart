@@ -9,8 +9,10 @@ class OnboardingOneScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const OnboardingContentWidget(
       imagePath: AppAssets.girl1,
-      title: "Algorithm",
-      description: "Users going through a vetting process\nto ensure you never match with bots.",
+      tag: "Verified Profiles",
+      tagIcon: Icons.verified_rounded,
+      title: "Discover Real Connections",
+      description: "Explore authentic profiles verified to ensure you meet genuine people who share your vibe and values.",
     );
   }
 }

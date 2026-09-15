@@ -4,6 +4,7 @@ import 'package:dating_app/core/widgets/app_button.dart';
 import 'package:dating_app/core/widgets/custom_app_bar.dart';
 import 'package:dating_app/features/auth/widgets/phone_input_field.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class VerificationScreen extends StatefulWidget {
   const VerificationScreen({super.key});
@@ -39,18 +40,19 @@ class _VerificationScreenState extends State<VerificationScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 40),
-            const Text(
+            Text(
               "My Mobile",
-              style: TextStyle(
+              style: GoogleFonts.plusJakartaSans(
                 fontSize: 32,
                 fontWeight: FontWeight.w700,
                 color: AppColors.textPrimary,
+                letterSpacing: -0.5,
               ),
             ),
             const SizedBox(height: 12),
-            const Text(
+            Text(
               'Please enter your valid phone number. We will send you a 6-digit code to verify your account.',
-              style: TextStyle(
+              style: GoogleFonts.plusJakartaSans(
                 fontSize: 15,
                 color: AppColors.textSecondary,
                 height: 1.4,

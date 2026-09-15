@@ -5,6 +5,7 @@ import 'package:dating_app/features/onboarding/screens/onboarding_one_screen.dar
 import 'package:dating_app/features/onboarding/screens/onboarding_three_screen.dart';
 import 'package:dating_app/features/onboarding/screens/onboarding_two_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -16,6 +17,8 @@ class OnboardingScreen extends StatefulWidget {
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
   final PageController _pageController = PageController();
+  int _currentPage = 0;
+  static const int _numPages = 3;
 
   @override
   void dispose() {
@@ -23,66 +26,134 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     super.dispose();
   }
 
+  void _onNext() {
+    if (_currentPage < _numPages - 1) {
+      _pageController.nextPage(
+        duration: const Duration(milliseconds: 350),
+        curve: Curves.easeInOutCubic,
+      );
+    } else {
+      Navigator.pushNamed(context, AppRoutes.signup);
+    }
+  }
+
+  void _onSkip() {
+    Navigator.pushNamed(context, AppRoutes.signup);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
-      body: Stack(
-        children: [
-          PageView(
-            controller: _pageController,
-            children: const [
-              OnboardingOneScreen(),
-              OnboardingTwoScreen(),
-              OnboardingThreeScreen(),
-            ],
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
+      body: SafeArea(
+        child: Column(
+          children: [
+            // Top Navigation Bar
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: _onSkip,
+                    style: TextButton.styleFrom(
+                      foregroundColor: AppColors.primary,
+                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    child: Text(
+                      "Skip",
+                      style: GoogleFonts.plusJakartaSans(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.primary,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            // PageView Hero Content (Proportionally takes available vertical space)
+            Expanded(
+              child: PageView(
+                controller: _pageController,
+                onPageChanged: (index) {
+                  setState(() {
+                    _currentPage = index;
+                  });
+                },
+                children: const [
+                  OnboardingOneScreen(),
+                  OnboardingTwoScreen(),
+                  OnboardingThreeScreen(),
+                ],
+              ),
+            ),
+
+            // Bottom Control Area
+            Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 20.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
+                  // Smooth Animated Page Indicator
                   SmoothPageIndicator(
                     controller: _pageController,
-                    count: 3,
-                    effect: const ScrollingDotsEffect(
+                    count: _numPages,
+                    effect: const ExpandingDotsEffect(
                       activeDotColor: AppColors.primary,
                       dotColor: AppColors.border,
                       dotHeight: 8.0,
                       dotWidth: 8.0,
-                      spacing: 8.0,
+                      expansionFactor: 3.5,
+                      spacing: 6.0,
                     ),
                   ),
-                  const SizedBox(height: 24),
+
+                  const SizedBox(height: 28),
+
+                  // Primary Action Button
                   AppButton(
-                    text: "Create an account",
-                    onPressed: () {
-                      Navigator.pushNamed(context, AppRoutes.signup);
-                    },
+                    text: _currentPage == _numPages - 1 ? "Create an account" : "Continue",
+                    elevation: 3,
+                    suffixIcon: const Icon(
+                      Icons.arrow_forward_rounded,
+                      color: Colors.white,
+                      size: 20,
+                    ),
+                    onPressed: _onNext,
                   ),
+
                   const SizedBox(height: 16),
+
+                  // Secondary Sign In Link
                   GestureDetector(
                     onTap: () {
                       Navigator.pushNamed(context, AppRoutes.signup);
                     },
-                    child: RichText(
-                      text: const TextSpan(
-                        text: "Already have an account? ",
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: AppColors.textPrimary,
-                        ),
-                        children: [
-                          TextSpan(
-                            text: 'Sign In',
-                            style: TextStyle(
-                              color: AppColors.primary,
-                              fontWeight: FontWeight.bold,
-                            ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 4.0),
+                      child: RichText(
+                        text: TextSpan(
+                          text: "Already have an account? ",
+                          style: GoogleFonts.plusJakartaSans(
+                            fontSize: 14,
+                            color: AppColors.textSecondary,
+                            fontWeight: FontWeight.w500,
                           ),
-                        ],
+                          children: [
+                            TextSpan(
+                              text: 'Sign In',
+                              style: GoogleFonts.plusJakartaSans(
+                                color: AppColors.primary,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -90,8 +161,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -1,9 +1,11 @@
 import 'package:dating_app/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AppButton extends StatelessWidget {
   final String text;
-  final Color color;
+  final Color? color;
+  final Gradient? gradient;
   final TextStyle? textStyle;
   final double elevation;
   final double width;
@@ -11,11 +13,16 @@ class AppButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final String? routeName;
   final Widget? destination;
+  final Widget? prefixIcon;
+  final Widget? suffixIcon;
+  final bool isOutlined;
+  final Color? borderColor;
 
   const AppButton({
     super.key,
     required this.text,
-    this.color = AppColors.primary,
+    this.color,
+    this.gradient,
     this.textStyle,
     this.elevation = 0,
     this.width = double.infinity,
@@ -23,43 +30,81 @@ class AppButton extends StatelessWidget {
     this.onPressed,
     this.routeName,
     this.destination,
+    this.prefixIcon,
+    this.suffixIcon,
+    this.isOutlined = false,
+    this.borderColor,
   });
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    final effectiveGradient = isOutlined
+        ? null
+        : (gradient ?? (color == null ? AppColors.primaryGradient : null));
+    final effectiveColor = isOutlined ? Colors.transparent : (color ?? AppColors.primary);
+
+    return Container(
       width: width == double.infinity ? null : width,
       height: height,
-      child: ElevatedButton(
-        onPressed: () {
-          if (onPressed != null) {
-            onPressed!();
-          } else if (routeName != null) {
-            Navigator.pushNamed(context, routeName!);
-          } else if (destination != null) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => destination!),
-            );
-          }
-        },
-        style: ElevatedButton.styleFrom(
-          backgroundColor: color,
-          foregroundColor: color == AppColors.primary ? Colors.white : AppColors.primary,
-          elevation: elevation,
-          minimumSize: Size(width == double.infinity ? 295 : width, height),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
+      decoration: BoxDecoration(
+        color: effectiveGradient == null ? effectiveColor : null,
+        gradient: effectiveGradient,
+        borderRadius: BorderRadius.circular(20),
+        border: isOutlined
+            ? Border.all(color: borderColor ?? AppColors.primary, width: 1.5)
+            : null,
+        boxShadow: (!isOutlined && elevation > 0)
+            ? const [
+                BoxShadow(
+                  color: AppColors.shadowActive,
+                  blurRadius: 12,
+                  offset: Offset(0, 4),
+                ),
+              ]
+            : null,
+      ),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(20),
+          onTap: () {
+            if (onPressed != null) {
+              onPressed!();
+            } else if (routeName != null) {
+              Navigator.pushNamed(context, routeName!);
+            } else if (destination != null) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => destination!),
+              );
+            }
+          },
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                if (prefixIcon != null) ...[
+                  prefixIcon!,
+                  const SizedBox(width: 8),
+                ],
+                Text(
+                  text,
+                  style: textStyle ??
+                      GoogleFonts.plusJakartaSans(
+                        color: isOutlined ? (borderColor ?? AppColors.primary) : Colors.white,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 16,
+                        letterSpacing: 0.2,
+                      ),
+                ),
+                if (suffixIcon != null) ...[
+                  const SizedBox(width: 8),
+                  suffixIcon!,
+                ],
+              ],
+            ),
           ),
-        ),
-        child: Text(
-          text,
-          style: textStyle ??
-              TextStyle(
-                color: color == AppColors.primary ? Colors.white : AppColors.primary,
-                fontWeight: FontWeight.w700,
-                fontSize: 16,
-              ),
         ),
       ),
     );

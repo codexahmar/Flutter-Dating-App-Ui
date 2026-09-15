@@ -20,5 +20,9 @@ void main() {
     );
 
     expect(find.byType(DatingApp), findsOneWidget);
+    // Verify "Dating" header text is removed from the top bar
+    expect(find.text("Dating"), findsNothing);
+    // Verify "Skip" button is present
+    expect(find.text("Skip"), findsOneWidget);
   });
 }

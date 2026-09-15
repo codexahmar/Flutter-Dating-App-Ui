@@ -4,12 +4,13 @@ import 'package:dating_app/core/routes/app_routes.dart';
 import 'package:dating_app/core/widgets/app_button.dart';
 import 'package:dating_app/core/widgets/social_auth_button.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
 
   void _handleEmailSignUp(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.verification);
+    Navigator.pushNamed(context, AppRoutes.emailAuth);
   }
 
   @override
@@ -30,27 +31,27 @@ class SignUpScreen extends StatelessWidget {
                   fit: BoxFit.contain,
                 ),
               ),
-              const SizedBox(height: 60),
-              const Text(
+              const SizedBox(height: 50),
+              Text(
                 "Sign up to continue",
-                style: TextStyle(
+                style: GoogleFonts.plusJakartaSans(
                   fontSize: 20,
-                  fontWeight: FontWeight.w700,
+                  fontWeight: FontWeight.w800,
                   color: AppColors.textPrimary,
+                  letterSpacing: -0.3,
                 ),
               ),
               const SizedBox(height: 32),
               AppButton(
                 text: "Continue with email",
-                color: AppColors.primary,
                 onPressed: () => _handleEmailSignUp(context),
               ),
               const SizedBox(height: 16),
               AppButton(
                 text: "Use phone number",
-                color: Colors.white,
-                elevation: 2,
-                textStyle: const TextStyle(
+                isOutlined: true,
+                borderColor: AppColors.primary,
+                textStyle: GoogleFonts.plusJakartaSans(
                   color: AppColors.primary,
                   fontWeight: FontWeight.w700,
                   fontSize: 16,
@@ -60,23 +61,24 @@ class SignUpScreen extends StatelessWidget {
                 },
               ),
               const SizedBox(height: 48),
-              const Row(
+              Row(
                 children: [
-                  Expanded(
-                    child: Divider(color: AppColors.divider, thickness: 1),
+                  const Expanded(
+                    child: Divider(color: AppColors.divider, thickness: 1.5),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Text(
                       "or sign up with",
-                      style: TextStyle(
+                      style: GoogleFonts.plusJakartaSans(
                         color: AppColors.textSecondary,
                         fontSize: 14,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ),
-                  Expanded(
-                    child: Divider(color: AppColors.divider, thickness: 1),
+                  const Expanded(
+                    child: Divider(color: AppColors.divider, thickness: 1.5),
                   ),
                 ],
               ),
@@ -107,23 +109,29 @@ class SignUpScreen extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 48),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text(
-                    "Terms of use",
-                    style: TextStyle(
-                      color: AppColors.primary,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
+                  GestureDetector(
+                    onTap: () {},
+                    child: Text(
+                      "Terms of use",
+                      style: GoogleFonts.plusJakartaSans(
+                        color: AppColors.primary,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
-                  Text(
-                    "Privacy Policy",
-                    style: TextStyle(
-                      color: AppColors.primary,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
+                  GestureDetector(
+                    onTap: () {},
+                    child: Text(
+                      "Privacy Policy",
+                      style: GoogleFonts.plusJakartaSans(
+                        color: AppColors.primary,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
                 ],

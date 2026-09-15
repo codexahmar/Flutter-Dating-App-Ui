@@ -1,3 +1,4 @@
+import 'package:dating_app/features/auth/screens/email_auth_screen.dart';
 import 'package:dating_app/features/auth/screens/otp_screen.dart';
 import 'package:dating_app/features/auth/screens/signup_screen.dart';
 import 'package:dating_app/features/auth/screens/verification_screen.dart';
@@ -20,6 +21,7 @@ class AppRoutes {
   static const String initialRoute = '/';
   static const String onboarding = '/onboarding';
   static const String signup = '/signup';
+  static const String emailAuth = '/email-auth';
   static const String verification = '/verification';
   static const String otp = '/otp';
   static const String profileDetails = '/profile-details';
@@ -38,6 +40,7 @@ class AppRoutes {
       initialRoute: (context) => const OnboardingScreen(),
       onboarding: (context) => const OnboardingScreen(),
       signup: (context) => const SignUpScreen(),
+      emailAuth: (context) => const EmailAuthScreen(),
       verification: (context) => const VerificationScreen(),
       otp: (context) => const OtpScreen(),
       profileDetails: (context) => const ProfileDetailsScreen(),

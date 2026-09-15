@@ -9,8 +9,10 @@ class OnboardingThreeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const OnboardingContentWidget(
       imagePath: AppAssets.girl3,
-      title: "Premium",
-      description: "Sign up today and enjoy the first month\nof premium benefits on us.",
+      tag: "VIP Perks",
+      tagIcon: Icons.workspace_premium_rounded,
+      title: "Premium Experience",
+      description: "Sign up today and unlock unlimited likes, instant matches, and spotlight perks on us.",
     );
   }
 }
