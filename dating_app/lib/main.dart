@@ -1,26 +1,30 @@
-import 'package:dating_app/controller/navbarController.dart';
-import 'package:dating_app/home_screen.dart';
-
+import 'package:dating_app/controllers/nav_bar_controller.dart';
+import 'package:dating_app/core/routes/app_routes.dart';
+import 'package:dating_app/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
     ChangeNotifierProvider(
       create: (context) => BottomNavBarController(),
-      child: MyApp(),
+      child: const DatingApp(),
     ),
   );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class DatingApp extends StatelessWidget {
+  const DatingApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      title: 'Dating App UI',
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      theme: AppTheme.lightTheme,
+      initialRoute: AppRoutes.initialRoute,
+      routes: AppRoutes.routes,
     );
   }
 }
