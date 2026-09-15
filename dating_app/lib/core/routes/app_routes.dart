@@ -8,11 +8,10 @@ import 'package:dating_app/features/matches/screens/matches_screen.dart';
 import 'package:dating_app/features/onboarding/screens/onboarding_screen.dart';
 import 'package:dating_app/features/profile/screens/profile_view_screen.dart';
 import 'package:dating_app/features/profile/screens/user_profile_screen.dart';
-import 'package:dating_app/features/profile_setup/screens/friends_screen.dart';
 import 'package:dating_app/features/profile_setup/screens/gender_screen.dart';
-import 'package:dating_app/features/profile_setup/screens/notifications_screen.dart';
 import 'package:dating_app/features/profile_setup/screens/passions_screen.dart';
 import 'package:dating_app/features/profile_setup/screens/profile_details_screen.dart';
+import 'package:dating_app/features/profile_setup/screens/setup_action_screen.dart';
 import 'package:flutter/material.dart';
 
 class AppRoutes {
@@ -46,8 +45,8 @@ class AppRoutes {
       profileDetails: (context) => const ProfileDetailsScreen(),
       gender: (context) => const GenderScreen(),
       passions: (context) => const PassionsScreen(),
-      friends: (context) => const FriendsScreen(),
-      notifications: (context) => const NotificationsScreen(),
+      friends: (context) => const SetupActionScreen.friends(),
+      notifications: (context) => const SetupActionScreen.notifications(),
       explore: (context) => const ExplorePeopleScreen(),
       matches: (context) => const MatchesScreen(),
       chats: (context) => const ChatsScreen(),

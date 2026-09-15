@@ -1,12 +1,10 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:dating_app/controllers/nav_bar_controller.dart';
+import 'package:dating_app/features/profile_setup/screens/gender_screen.dart';
+import 'package:dating_app/features/profile_setup/screens/passions_screen.dart';
+import 'package:dating_app/features/profile_setup/screens/profile_details_screen.dart';
+import 'package:dating_app/features/profile_setup/screens/setup_action_screen.dart';
 import 'package:dating_app/main.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
 
@@ -24,5 +22,68 @@ void main() {
     expect(find.text("Dating"), findsNothing);
     // Verify "Skip" button is present
     expect(find.text("Skip"), findsOneWidget);
+  });
+
+  testWidgets('SetupActionScreen renders friends mode properly',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: SetupActionScreen.friends(),
+      ),
+    );
+
+    expect(find.text("Search Friends"), findsOneWidget);
+    expect(find.text("Access to contact list"), findsOneWidget);
+  });
+
+  testWidgets('SetupActionScreen renders notifications mode properly',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: SetupActionScreen.notifications(),
+      ),
+    );
+
+    expect(find.text("Enable Notifications"), findsOneWidget);
+    expect(find.text("I want to be notified"), findsOneWidget);
+  });
+
+  testWidgets('ProfileDetailsScreen renders properly',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: ProfileDetailsScreen(),
+      ),
+    );
+
+    expect(find.text("Profile Details"), findsOneWidget);
+    expect(find.text("Confirm"), findsOneWidget);
+  });
+
+  testWidgets('GenderScreen renders properly and handles selection',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: GenderScreen(),
+      ),
+    );
+
+    expect(find.text("I am a"), findsOneWidget);
+    expect(find.text("Woman"), findsOneWidget);
+    expect(find.text("Man"), findsOneWidget);
+    expect(find.text("Continue"), findsOneWidget);
+  });
+
+  testWidgets('PassionsScreen renders properly with selectable interests',
+      (WidgetTester tester) async {
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: PassionsScreen(),
+      ),
+    );
+
+    expect(find.text("Your Interests"), findsOneWidget);
+    expect(find.text("Travel"), findsOneWidget);
+    expect(find.text("Continue"), findsOneWidget);
   });
 }
